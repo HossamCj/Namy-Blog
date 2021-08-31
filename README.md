@@ -1,2 +1,4 @@
-# Namy-Blog
-Namy it's a blog for sharing your Tech experience 
+# Namy-B
+It's a website care about  homestays for vacation rentals, and tourism activities.
+
+a simple airbnb clone
