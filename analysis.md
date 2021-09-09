@@ -1,12 +1,14 @@
 Property:
     - name
+    - description 
     - main image / in list
     - images / in details * 
     - price 
     - day 
     - place * 
-    - description 
-    * 
+    - categories * 
+    *
+    *FEATURES*
     - rating : * 
         - show the room rating 
         - add rate [booked already]
@@ -48,7 +50,7 @@ WEBSITE:
     - description | short one 
     - fc_link
     - tw_link
-    - insta_lingk
+    - insta_link
     
     
     
