@@ -42,10 +42,10 @@ About:
     
     
 WEBSITE:
+    - site_name
     - phone 
     - address
     - email
-    - name | website name
     - logo
     - description | short one 
     - fc_link
