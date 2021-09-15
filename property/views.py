@@ -6,6 +6,7 @@ from .models import Property
 
 class PropertyList(ListView):
     model = Property
+    paginate_by = 1
     # filter
     # pagination
 
@@ -13,5 +14,4 @@ class PropertyList(ListView):
 class PropertyDetail(DetailView):
     model = Property
     # book
-
 
