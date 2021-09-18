@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'taggit',
     'django_summernote',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
