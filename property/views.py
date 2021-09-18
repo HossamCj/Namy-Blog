@@ -4,12 +4,15 @@ from django.views.generic.edit import FormMixin
 
 from .models import Property
 from .forms import PropertyBookForm
+from .filters import PropertyFilter
+from django_filters.views import FilterView
 
 
-class PropertyList(ListView):
+class PropertyList(FilterView):
     model = Property
     paginate_by = 3
-    # filter
+    filterset_class = PropertyFilter
+    template_name = 'property/property_list.html'
     # pagination
 
 
