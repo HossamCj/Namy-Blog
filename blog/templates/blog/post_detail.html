@@ -150,7 +150,7 @@
                   </div>
                 </li>
               </ul>
-              <!-- END comment-list -->
+<!--     END comment-list -->
 
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
@@ -194,7 +194,7 @@
               <div class="categories">
                 <h3>Categories</h3>
                 {% for category in categories %}
-                  <li><a href="{% url 'post_by_category' category">{{ category }} <span>{{ category.post_count }}</span></a></li>
+                  <li><a href="{% url 'post_by_category' category %}">{{ category }} <span>{{ category.post_count }}</span></a></li>
                 {% endfor %}
               </div>
             </div>
