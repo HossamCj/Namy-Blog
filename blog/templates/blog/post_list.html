@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+
+
+{% block content %}
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">dirEngine.</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
+          <li class="nav-item"><a href="{% url 'property_list' %}" class="nav-link">Hotels</a></li>
+          <li class="nav-item active"><a href="{% url 'post_list' %}" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>Add listing</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!-- END nav -->
+    
+    <div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_4.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row d-flex">
+          {% for post in object_list %}
+            <div class="col-md-3 d-flex ftco-animate">
+              <div class="blog-entry align-self-stretch">
+                <a href="{% url 'post_detail' post.slug %}" class="block-20" style="background-image: url({{ post.image.url }});">
+                </a>
+                <div class="text p-4 d-block">
+                  <span class="tag">{{ post.title }}</span>
+                  <h3 class="heading mt-3"><a href="{% url 'post_detail' post.slug %}">{{ post.description | safe | truncatewords:4 }} </a></h3>
+                  <div class="meta mb-3">
+                    <div><a href="{% url 'post_detail' post.slug %}">{{ post.created_at | date:'j F Y' }}</a></div>
+                    <div><a href="{% url 'post_detail' post.slug %}">{{ post.author }}</a></div>
+                    <div><a href="{% url 'post_detail' post.slug %}" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                {% if page_obj.has_previous %}
+                  <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                {% else %}
+                  <li class="disabled">
+                    <span>&lt;</span>
+                  </li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+
+                  {% if page_obj.number == i %}
+                    <li class="active">
+                      <span>{{ i }}</span>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                  {% endif %}
+
+                {% endfor %}
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
