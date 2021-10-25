@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'settings',
     'about',
 
+    # My packages
     'taggit',
     'django_summernote',
     'bootstrap4',

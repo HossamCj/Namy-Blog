@@ -60,3 +60,7 @@ def category_filter(request, category):
     }
 
     return render(request, 'settings/home_search.html', context)
+
+
+def contact_us(request):
+    pass
