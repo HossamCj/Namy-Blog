@@ -15,6 +15,7 @@ class Place(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
+    icons = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
@@ -23,7 +24,7 @@ class Category(models.Model):
 class Property(models.Model):
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=120, null=True, blank=True)
-    description = models.TextField(max_length=500)
+    description = models.TextField(max_length=5000)
     price = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='property/')
     place = models.ForeignKey(Place, related_name='property_place', on_delete=models.CASCADE)
