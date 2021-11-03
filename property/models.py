@@ -22,6 +22,7 @@ class Category(models.Model):
 
 
 class Property(models.Model):
+    author = models.ForeignKey(User, related_name='property_author', on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=120, null=True, blank=True)
     description = models.TextField(max_length=5000)
@@ -41,6 +42,30 @@ class Property(models.Model):
 
     def __str__(self):
         return self.name
+
+    def check_availability(self):
+        all_reservations = self.book_property.all()
+        now = timezone.now().date()
+
+        for reservation in all_reservations:
+            if now > reservation.date_to:
+                return 'Available'
+            elif reservation.date_from < now < reservation.date_to:
+                booked_to = reservation.date_to
+                return f'Booked to : {booked_to}'
+        else:
+            return 'Available'
+
+    def get_average_rate(self):
+        all_reviews = self.review_property.all()
+        all_ratings = 0
+
+        if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_ratings += review.rate
+            return round(all_ratings / len(all_reviews), 2)
+        else:
+            return '-'
 
 
 class PropertyImages(models.Model):
@@ -81,14 +106,11 @@ class PropertyBook(models.Model):
     def __str__(self):
         return str(self.property)
 
+    def booked(self):
+        now = timezone.now().date()
+        return self.date_from < now < self.date_to
 
-
-
-
-
-
-
-
+    booked.boolean = True
 
 
 
