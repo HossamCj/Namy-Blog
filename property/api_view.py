@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 
 from .serializers import PropertySerializer
 from .models import Property
@@ -9,6 +9,6 @@ class PropertyAPIList(ListAPIView):
     serializer_class = PropertySerializer
 
 
-class PropertyAPIDetail(RetrieveAPIView):
+class PropertyAPIDetail(RetrieveUpdateDestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
