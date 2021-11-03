@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -17,4 +18,14 @@ def post_list_api(request):
 def post_detail_api(request, pk):
     post = get_object_or_404(Post, pk=pk)
     data = PostSerializers(post).data
+    return Response({'data': data})
+
+
+@api_view(['GET'])
+def post_filter_api(request, query):
+    posts = Post.objects.filter(
+        Q(title__icontains=query) |
+        Q(description__icontains=query)
+    )
+    data = PostSerializers(posts, many=True).data
     return Response({'data': data})

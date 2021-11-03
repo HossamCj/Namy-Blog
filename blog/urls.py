@@ -11,7 +11,8 @@ urlpatterns = [
     path('blog/categories/<slug>/', PostsByCategory.as_view(), name='post_by_category'),
     path('blog/tags/<slug>/', PostsByTags.as_view(), name='post_by_tag'),
 
-    # API
+    # API's
     path('blog/api/api-list/', post_list_api, name='post_list_api'),
     path('blog/api/<int:pk>/', post_detail_api, name='post_detail_api'),
+    path('blog/api/list/filter/<str:query>/', post_filter_api, name='post_search_api'),
 ]
