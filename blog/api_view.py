@@ -10,14 +10,14 @@ from .models import Post
 @api_view(['GET'])
 def post_list_api(request):
     all_posts = Post.objects.all()
-    data = PostSerializers(all_posts, many=True).data
+    data = PostSerializers(all_posts, many=True, context={'request': request}).data
     return Response({'data': data})
 
 
 @api_view(['GET'])
 def post_detail_api(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    data = PostSerializers(post).data
+    data = PostSerializers(post, context={'request': request}).data
     return Response({'data': data})
 
 
