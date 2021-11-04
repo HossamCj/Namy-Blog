@@ -32,6 +32,8 @@ urlpatterns = [
 
     path('summernote/', include('django_summernote.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj=rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
