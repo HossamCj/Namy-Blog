@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.db import models
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 from taggit.managers import TaggableManager
 
@@ -15,14 +16,14 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, related_name='post_author', on_delete=models.CASCADE)
-    title = models.CharField(max_length=120)
-    slug = models.SlugField(max_length=120, null=True, blank=True)
-    description = models.TextField(max_length=500, blank=True)
-    image = models.ImageField(upload_to='post/')
-    created_at = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, related_name='post_author', verbose_name=_('author'), on_delete=models.CASCADE)
+    title = models.CharField(_('title'), max_length=120)
+    slug = models.SlugField(max_length=120, null=True, blank=True, verbose_name=_('url'))
+    description = models.TextField(_('description'), max_length=500, blank=True,)
+    image = models.ImageField(_('image'), upload_to='post/')
+    created_at = models.DateTimeField(_('created_at'), default=timezone.now)
     tags = TaggableManager()
-    category = models.ForeignKey(Category, related_name='post_category', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='post_category', verbose_name=_('category'), on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         if not self.slug:

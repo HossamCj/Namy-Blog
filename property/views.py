@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, CreateView
 
 from .models import Property
 from .forms import PropertyBookForm
@@ -34,6 +35,12 @@ class PropertyDetail(FormMixin, DetailView):
             myform.user = request.user
             myform.save()
             return redirect('property_list')
+
+
+@login_required
+class AddListing(CreateView):
+    model = Property
+    template_name = 'property/add_listing.html'
 
 
 

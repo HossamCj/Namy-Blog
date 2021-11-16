@@ -63,4 +63,4 @@ def category_filter(request, category):
 
 
 def contact_us(request):
-    pass
+    return render(request, 'settings/contact_us.html')

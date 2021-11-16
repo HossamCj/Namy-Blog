@@ -31,9 +31,14 @@ urlpatterns = [
 
 
     path('summernote/', include('django_summernote.urls')),
+    # API's
     path('api-auth/', include('rest_framework.urls')),
+    # Django rest API
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj=rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+
+    # Translation
+    path('i18n/', include('django.conf.urls.i18n'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

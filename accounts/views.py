@@ -66,6 +66,7 @@ def myreservation(request):
     return render(request, 'profile/my_reservation.html', context)
 
 
+@login_required
 def mylisting(request):
     property_list = Property.objects.filter(author=request.user)
     context = {
