@@ -1,4 +1,4 @@
 # Namy-rent
-It's a website care about  homestays for vacation rentals, and tourism activities.
+It's a simple airbnb clone build by Django .
 
-a simple airbnb clone .
+
